@@ -76,22 +76,14 @@ class InputDataActivity :  BaseActivity() {
                         // Dodanie pomiaru do bazy danych Firestore
                         dbOperations.saveData(UserId, badanie)
                     }
-                    showErrorSnackBar(resources.getString(R.string.sucess_msg_add_to_database), false)
-
-
-
                     // Wyślij powiadomienie po pobraniu danych
                     sendNotification(this, "New Measurements", "New glucose measurements have been added.")
-
-
-
-
+                    // po 2s przechodzi do menu
                     val splashScreenDuration: Long = 2000
                     Handler().postDelayed({
-                        // Start MenuActivity after 5 seconds
                         val intent = Intent(this@InputDataActivity, MenuActivity::class.java)
                         startActivity(intent)
-                        finish() // Close this activity
+                        finish()
                     }, splashScreenDuration)
                 } else {
                     showErrorSnackBar(resources.getString(R.string.err_msg_add_to_database), true)

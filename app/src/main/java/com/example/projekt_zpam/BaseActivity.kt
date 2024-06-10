@@ -15,15 +15,17 @@ import com.google.android.material.snackbar.Snackbar
 /**
  * Klasa bazowa dla wszystkich aktywności w aplikacji.
  * Zawiera metodę do wyświetlania paska Snackbar z komunikatem.
+ * Zawiera kanał powiadomień w aplikacji
  */
 open class BaseActivity : AppCompatActivity() {
 
-    /**
-     * Wyświetla pasek Snackbar z określonym komunikatem.
-     * @param message Wiadomość do wyświetlenia w pasku Snackbar.
-     * @param errorMessage Flaga określająca, czy komunikat jest błędem (true) lub sukcesem (false).
-     */
+
     fun showErrorSnackBar(message: String, errorMessage: Boolean){
+        /**
+         * Wyświetla pasek Snackbar z określonym komunikatem.
+         * @param message Wiadomość do wyświetlenia w pasku Snackbar.
+         * @param errorMessage Flaga określająca, czy komunikat jest błędem (true) lub sukcesem (false).
+         */
         val snackbar =
             Snackbar.make(findViewById(android.R.id.content),message,Snackbar.LENGTH_LONG)
         val snackbarView = snackbar.view
@@ -49,11 +51,14 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        // Implementacji funkcji tworzącej kanał powiadomień
         createNotificationChannel()
     }
 
     private fun createNotificationChannel() {
+        /**
+         * Tworzy kanał powiadomień o nowych pomiarach glukozy
+         */
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "GlucoseMeasurementsChannel"
             val descriptionText = "Channel for glucose measurements notifications"

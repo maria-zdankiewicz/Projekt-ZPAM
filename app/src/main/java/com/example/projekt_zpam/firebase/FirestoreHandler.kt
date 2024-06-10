@@ -49,6 +49,11 @@ class FirestoreHandler(private val db: FirebaseFirestore) : FirestoreInterface {
 
 
         override suspend fun saveData(UserId: String, badanie: MeasurementData){
+            /**
+             * Zapisuje pomiar w odpowiednim miejscu w Firebase
+             * @param UserId unikalny identyfikator zalogowanego użytkownika
+             * @param badanie obiekt klasy przechowywującej dane pomiaru.
+             */
         try {
             // Pobieranie aktualnej daty jako string
             val dateFormat = SimpleDateFormat("yyyy-MM-dd  HH:mm:ss", Locale.getDefault())
@@ -59,24 +64,4 @@ class FirestoreHandler(private val db: FirebaseFirestore) : FirestoreInterface {
             // Obsługa błędów
         }
     }
-
 }
-
-/**
- * Implementacja bazy danych
- * Recycle view
- * powiadomienia
- * musi byś stabilna
- *
- * db.collection("badania")
- *             .document(userId)
- *             .collection("pomiary")
- *             .document(currentDate)
- *             .set(measurement)
- *             .addOnSuccessListener {
- *                 Log.d("Firestore", "DocumentSnapshot successfully written!")
- *             }
- *             .addOnFailureListener { e ->
- *                 Log.w("Firestore", "Error writing document", e)
- *             }
- */
