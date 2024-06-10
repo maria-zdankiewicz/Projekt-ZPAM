@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "775765423466",
+    "project_id": "projekt-zpam",
+    "storage_bucket": "projekt-zpam.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:775765423466:android:6fa72ed491cd530fd56113",
+        "android_client_info": {
+          "package_name": "com.example.projekt_zpam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWjr41UY1laEaevC804-proxntJWBfh4k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
