@@ -10,7 +10,7 @@ open class FirestoreClass {
 
         fun registerUserFS(activity: RegisterActivity, userInfo: User){
             /**
-             * Rejestruje użytkownika w kolekcji users
+             * Rejestruje użytkownika w Firebase w kolekcji users
              */
             mFireStore.collection("users")
                 .document(userInfo.id)

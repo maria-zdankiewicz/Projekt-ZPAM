@@ -97,7 +97,7 @@ class RegisterActivity: BaseActivity() {
                         showErrorSnackBar("You are registered successfully." +
                                 " Your user id is ${firebaseUser.uid}",false)
 
-                        val user = User("Testowe ID",
+                        val user = User(firebaseUser.uid,
                             name,
                             true,
                             login,

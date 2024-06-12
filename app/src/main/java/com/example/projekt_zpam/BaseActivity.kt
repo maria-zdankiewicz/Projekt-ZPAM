@@ -55,7 +55,7 @@ open class BaseActivity : AppCompatActivity() {
         createNotificationChannel()
     }
 
-    private fun createNotificationChannel() {
+    open fun createNotificationChannel() {
         /**
          * Tworzy kanał powiadomień o nowych pomiarach glukozy
          */
@@ -73,7 +73,7 @@ open class BaseActivity : AppCompatActivity() {
     }
 
 
-    fun sendNotification(context: Context, title: String, message: String) {
+    open fun sendNotification(context: Context, title: String, message: String) {
         val intent = Intent(context, RecycleActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }

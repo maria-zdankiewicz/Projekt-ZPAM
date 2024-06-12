@@ -40,7 +40,8 @@ class RecycleActivity : AppCompatActivity() {
                 .get()
                 .addOnSuccessListener { documents ->
                     for (document in documents) {
-                        val measurement = document.toObject(MeasurementData::class.java).copy(formattedDate = document.id)
+                        val measurement = document.toObject(MeasurementData::class.java)
+                            .copy(formattedDate = document.id)
                         measurements.add(measurement)
                     }
                     adapter.notifyDataSetChanged()
@@ -53,13 +54,15 @@ class RecycleActivity : AppCompatActivity() {
             Log.e("RecycleActivity", "No user is logged in")
         }
 
-        backButton?.setOnClickListener{
+        backButton?.setOnClickListener {
             gotoMenuActivity()
         }
     }
-    private fun gotoMenuActivity(){
+
+    private fun gotoMenuActivity() {
         val intent = Intent(this, MenuActivity::class.java)
         startActivity(intent)
         finish()
     }
+    
 }
