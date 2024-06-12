@@ -74,6 +74,12 @@ open class BaseActivity : AppCompatActivity() {
 
 
     open fun sendNotification(context: Context, title: String, message: String) {
+        /**
+         * Wysyła powidomienie
+         * @param context abstrakcyjna klasa bazowa dla Activity
+         * @param title nazwa/tytuł powiadomienia
+         * @param message treść powiadomienia
+         */
         val intent = Intent(context, RecycleActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }

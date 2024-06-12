@@ -46,12 +46,12 @@ open class LoginActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    /**
-     * Metoda walidująca wprowadzone dane logowania.
-     * @return True, jeśli dane są poprawne, w przeciwnym razie False.
-     */
-    private fun validateLoginDetails(): Boolean {
 
+    private fun validateLoginDetails(): Boolean {
+        /**
+         * Metoda walidująca wprowadzone dane logowania.
+         * @return True jeśli dane są poprawne, jak nie to False.
+         */
         return when{
             TextUtils.isEmpty(inputEmail?.text.toString().trim{ it <= ' '}) -> {
                 showErrorSnackBar(resources.getString(R.string.err_msg_enter_email), true)
@@ -70,11 +70,12 @@ open class LoginActivity : BaseActivity(), View.OnClickListener {
         }
 
     }
-    /**
-     * Metoda logowania zarejestrowanego użytkownika za pomocą Firebase Authentication.
-     */
+
     private fun logInRegisteredUser(){
 
+        /**
+         * Metoda logowania zarejestrowanego użytkownika za pomocą Firebase
+         */
 
         if(validateLoginDetails()){
             val email = inputEmail?.text.toString().trim(){ it<= ' '}
@@ -94,11 +95,11 @@ open class LoginActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    /**
-     * Metoda przechodzenia do głównej aktywności po pomyślnym zalogowaniu i przekazanie uid do głównej aktywności.
-     */
-    open fun goToWelcomeActivity() {
 
+    open fun goToWelcomeActivity() {
+        /**
+         * Metoda przechodzenia do głównej aktywności po pomyślnym zalogowaniu i przekazanie uid do głównej aktywności.
+         */
         val user = FirebaseAuth.getInstance().currentUser;
         val uid = user?.email.toString()
 

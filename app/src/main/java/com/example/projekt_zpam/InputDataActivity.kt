@@ -24,12 +24,15 @@ class InputDataActivity :  BaseActivity() {
     // Referencja do obiektu FirebaseFirestore do interakcji z bazą danych Firestore
     val db = Firebase.firestore
 
+    // Referencja do autentyfikacji z Firebase
     private lateinit var auth: FirebaseAuth
 
+    // Grupa Radio Buttonów po określania typu pomiaru
     private lateinit var radioGroup: RadioGroup
     private lateinit var radioFasting: RadioButton
     private lateinit var radioAfterMeal: RadioButton
 
+    // Domyślnie pusty typ pomiaru
     private var selectedMeasurementType: MeasurementType? = null
 
     // Obiekt do obsługi operacji na bazie danych Firestore
@@ -40,6 +43,7 @@ class InputDataActivity :  BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inputdata)
 
+        //Pobranie unikalnego identyfikatora użytkowniak z Firebase
         auth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser
         val UserId = currentUser!!.uid
@@ -52,7 +56,7 @@ class InputDataActivity :  BaseActivity() {
         radioAfterMeal = findViewById(R.id.radioAfterMeal)
         val backButton = findViewById<Button>(R.id.backButton)
 
-        // Ustawienie nasłuchiwaczy kliknięć dla przycisków
+        // Ustawienie nasłuchiwaczy kliknięć dla przycisków RadioButton
         radioGroup.setOnCheckedChangeListener { _, checkedId ->
             selectedMeasurementType = when (checkedId) {
                 R.id.radioFasting -> MeasurementType.FASTING
@@ -65,6 +69,7 @@ class InputDataActivity :  BaseActivity() {
             try{
             val numberText = InputLevel.text.toString()
             if (selectedMeasurementType != null && numberText.isNotEmpty()) {
+                // Ustawienie daty i poziomu glukozy
                 val glucose_level = numberText.toInt()
                 val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                 val currentDate = dateFormat.format(Date())
@@ -76,7 +81,7 @@ class InputDataActivity :  BaseActivity() {
                         // Dodanie pomiaru do bazy danych Firestore
                         dbOperations.saveData(UserId, badanie)
                     }
-                    // Wyślij powiadomienie po pobraniu danych
+                    // Wysłanie powiadomienie po pobraniu danych
                     sendNotification(this, "New Measurements", "New glucose measurements have been added.")
                     // po 2s przechodzi do menu
                     val splashScreenDuration: Long = 2000
@@ -95,12 +100,16 @@ class InputDataActivity :  BaseActivity() {
             }
         }
 
+        // Powrót do menu
         backButton?.setOnClickListener{
             gotoMenuActivity()
         }
     }
 
     private fun gotoMenuActivity(){
+        /**
+         * Funkcja przychodząca do menu
+         */
         val intent = Intent(this, MenuActivity::class.java)
         startActivity(intent)
         finish()
