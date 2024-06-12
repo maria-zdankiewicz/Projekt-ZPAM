@@ -50,7 +50,7 @@ class Adapter(private val measurements: MutableList<MeasurementData>) :
         holder.buttonDelete.setOnClickListener {
             // Uruchomienie korutyny w wątku głównym
             GlobalScope.launch(Dispatchers.Main) {
-                // Usunięcie pomiaru z bazy danych Firestore
+                // Usunięcie pomiaru z bazy danych Firestore i listy w RecycleView
                 dbOperations.deleteData(UserId, measurement)
                 measurements.removeAt(position)
                 notifyItemRemoved(position)
