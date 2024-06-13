@@ -27,7 +27,7 @@ open class WelcomeActivity : AppCompatActivity() {
             // Przechodzi do Menu po 2 sekundach
             val intent = Intent(this@WelcomeActivity, MenuActivity::class.java)
             startActivity(intent)
-            finish() // Close this activity
+            finish()
         }, splashScreenDuration)
     }
 }
