@@ -40,12 +40,12 @@ class RegisterActivity: BaseActivity() {
         }
     }
 
-    /**
-     * Metoda walidująca wprowadzone dane rejestracji.
-     * @return True, jeśli dane są poprawne, w przeciwnym razie False.
-     */
-    private fun validateRegisterDetails(): Boolean {
 
+    private fun validateRegisterDetails(): Boolean {
+        /**
+         * Metoda walidująca wprowadzone dane rejestracji.
+         * @return True, jeśli dane są poprawne jeśli nie to False.
+         */
         return when{
             TextUtils.isEmpty(inputEmail?.text.toString().trim{ it <= ' '}) -> {
                 showErrorSnackBar(resources.getString(R.string.err_msg_enter_email),true)
@@ -71,20 +71,21 @@ class RegisterActivity: BaseActivity() {
         }
     }
 
-    /**
-     * Metoda przechodzenia do aktywności logowania.
-     */
+
     fun goToLogin(view: View) {
+        /**
+         * Metoda przechodzenia do aktywności logowania.
+         */
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
-        finish() // finish(), po to aby użytkownik nie mógł już wrócić do
-    // aktualnej aktywności bez restartowania aplikacji
+        finish()
     }
 
-    /**
-     * Metoda rejestracji użytkownika za pomocą Firebase Authentication.
-     */
+
     private fun registerUser(){
+        /**
+         * Metoda rejestracji użytkownika za pomocą Firebase Authentication.
+         */
         if (validateRegisterDetails()){
             val login: String = inputEmail?.text.toString().trim() {it <= ' '}
             val password: String = inputPassword?.text.toString().trim() {it <= ' '}
@@ -115,10 +116,10 @@ class RegisterActivity: BaseActivity() {
         }
     }
 
-    /**
-     * Metoda wywoływana po udanej rejestracji użytkownika wyświetlająca wiadomość Toast.
-     */
     fun  userRegistrationSuccess(){
+        /**
+         * Metoda wywoływana po udanej rejestracji użytkownika wyświetlająca wiadomość Toast.
+         */
         Toast.makeText(this@RegisterActivity,
             resources.getString(R.string.register_success), Toast.LENGTH_LONG).show()
     }

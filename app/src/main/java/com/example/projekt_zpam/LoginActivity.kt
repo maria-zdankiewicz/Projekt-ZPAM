@@ -27,17 +27,22 @@ open class LoginActivity : BaseActivity(), View.OnClickListener {
         loginButton = findViewById(R.id.loginButton)
 
         // Ustawienie nasłuchiwania kliknięć przycisku logowania
-        loginButton?.setOnClickListener{
+        loginButton?.setOnClickListener {
             logInRegisteredUser()
         }
 
     }
 
     override fun onClick(view: View?) {
-        if(view !=null){
-            when (view.id){
+        /**
+         * Obsługuje zdarzenia kliknięcia dla widoku
+         *
+         * @param view Widok który został kliknięty. Może mieć wartość null.
+         */
+        if (view != null) {
+            when (view.id) {
 
-                R.id.registerTextViewClickable ->{
+                R.id.registerTextViewClickable -> {
                     // Przejście do ekranu rejestracji po kliknięciu linku
                     val intent = Intent(this, RegisterActivity::class.java)
                     startActivity(intent)
@@ -52,60 +57,60 @@ open class LoginActivity : BaseActivity(), View.OnClickListener {
          * Metoda walidująca wprowadzone dane logowania.
          * @return True jeśli dane są poprawne, jak nie to False.
          */
-        return when{
-            TextUtils.isEmpty(inputEmail?.text.toString().trim{ it <= ' '}) -> {
+        return when {
+            TextUtils.isEmpty(inputEmail?.text.toString().trim { it <= ' ' }) -> {
                 showErrorSnackBar(resources.getString(R.string.err_msg_enter_email), true)
                 false
             }
 
-            TextUtils.isEmpty(inputPassword?.text.toString().trim{ it <= ' '}) -> {
-                showErrorSnackBar(resources.getString(R.string.err_msg_enter_password),true)
+            TextUtils.isEmpty(inputPassword?.text.toString().trim { it <= ' ' }) -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_password), true)
                 false
             }
 
             else -> {
-                showErrorSnackBar("Your details are valid",false)
+                showErrorSnackBar("Your details are valid", false)
                 true
             }
         }
 
     }
 
-    private fun logInRegisteredUser(){
-
+    private fun logInRegisteredUser() {
         /**
          * Metoda logowania zarejestrowanego użytkownika za pomocą Firebase
          */
 
-        if(validateLoginDetails()){
-            val email = inputEmail?.text.toString().trim(){ it<= ' '}
-            val password = inputPassword?.text.toString().trim(){ it<= ' '}
+        if (validateLoginDetails()) {
+            val email = inputEmail?.text.toString().trim() { it <= ' ' }
+            val password = inputPassword?.text.toString().trim() { it <= ' ' }
 
             // Logowanie za pomocą FirebaseAuth
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(email,password)
-                .addOnCompleteListener{task ->
-                    if(task.isSuccessful){
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
                         showErrorSnackBar("You are logged in successfully.", false)
                         goToWelcomeActivity()
                         finish()
-                    } else{
-                        showErrorSnackBar(task.exception!!.message.toString(),true)
+                    } else {
+                        showErrorSnackBar(task.exception!!.message.toString(), true)
                     }
                 }
         }
     }
 
-
     open fun goToWelcomeActivity() {
         /**
-         * Metoda przechodzenia do głównej aktywności po pomyślnym zalogowaniu i przekazanie uid do głównej aktywności.
+         * Metoda przechodzenia do głównej aktywności po pomyślnym zalogowaniu i
+         * przekazanie uid do głównej aktywności.
          */
         val user = FirebaseAuth.getInstance().currentUser;
         val uid = user?.email.toString()
 
         val intent = Intent(this, WelcomeActivity::class.java)
-        intent.putExtra("uID",uid)
+        intent.putExtra("uID", uid)
         startActivity(intent)
     }
-
 }
+
+

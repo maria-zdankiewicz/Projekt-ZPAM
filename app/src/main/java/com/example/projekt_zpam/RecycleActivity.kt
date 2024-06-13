@@ -20,12 +20,14 @@ class RecycleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycle)
 
+        // Inicjalizacja elementów interfejsu
         recyclerView = findViewById(R.id.recyclerView)
         val backButton = findViewById<Button>(R.id.backButton)
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = Adapter(measurements)
         recyclerView.adapter = adapter
 
+        // Obiekty do obsługi bazy danych i autentyfikacji
         val auth = FirebaseAuth.getInstance()
         val db = FirebaseFirestore.getInstance()
 
@@ -34,6 +36,7 @@ class RecycleActivity : AppCompatActivity() {
 
             val userId = currentUser.uid
 
+            // Pobranie pomiarów i dodanie do wyświetlanej listy
             db.collection("badania")
                 .document(userId)
                 .collection("pomiary")
@@ -60,6 +63,9 @@ class RecycleActivity : AppCompatActivity() {
     }
 
     private fun gotoMenuActivity() {
+        /**
+         * Funkcja przychodząca do menu
+         */
         val intent = Intent(this, MenuActivity::class.java)
         startActivity(intent)
         finish()

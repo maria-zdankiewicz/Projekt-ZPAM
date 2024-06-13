@@ -86,7 +86,7 @@ open class BaseActivity : AppCompatActivity() {
         val pendingIntent: PendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
         val builder = NotificationCompat.Builder(context, "CHANNEL_ID")
-            .setSmallIcon(R.drawable.glucose) // Upewnij się, że masz ikonę powiadomienia w folderze res/drawable
+            .setSmallIcon(R.drawable.glucose)
             .setContentTitle(title)
             .setContentText(message)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)

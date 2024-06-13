@@ -6,14 +6,10 @@ import android.os.Handler
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
-/**
- * Główna aktywność aplikacji, wyświetlająca powitanie użytkownika.
- */
 open class WelcomeActivity : AppCompatActivity() {
 
-
     private var welcomeTextView: TextView? = null
-    private val splashScreenDuration: Long = 2000 // 2 seconds
+    private val splashScreenDuration: Long = 2000 // 2 sekundy
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +24,7 @@ open class WelcomeActivity : AppCompatActivity() {
         welcomeTextView?.text = "Welcome ${userID}!";
 
         Handler().postDelayed({
-            // Start MenuActivity after 5 seconds
+            // Przechodzi do Menu po 2 sekundach
             val intent = Intent(this@WelcomeActivity, MenuActivity::class.java)
             startActivity(intent)
             finish() // Close this activity

@@ -13,7 +13,6 @@ class FirestoreHandler(private val db: FirebaseFirestore) : FirestoreInterface {
 
     private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 
-
         override suspend fun saveData(UserId: String, badanie: MeasurementData){
             /**
              * Zapisuje pomiar w odpowiednim miejscu w Firebase

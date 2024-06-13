@@ -11,13 +11,14 @@ class MenuActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
+        // Inicjalizacja przycisków
         val inputButton = findViewById<Button>(R.id.inputButton)
         val recycleButton = findViewById<Button>(R.id.recycleButton)
 
 
         // Ustawienie nasłuchiwania kliknięć przycisku
         inputButton?.setOnClickListener{
-        gotoMenuActivity()
+        gotoInputActivity()
         }
 
         // Ustawienie nasłuchiwania kliknięć przycisku
@@ -26,13 +27,19 @@ class MenuActivity: AppCompatActivity() {
         }
     }
 
-    private fun gotoMenuActivity(){
+    private fun gotoInputActivity(){
+        /**
+         * Metoda przechodzenia do aktywności do wprowadzania pomiarów
+         */
         val intent = Intent(this, InputDataActivity::class.java)
         startActivity(intent)
         finish()
     }
 
     private fun gotoRecycleActivity(){
+        /**
+         * Metoda przechodzenia do aktywności wyświetlającej historię pomiarów
+         */
         val intent = Intent(this, RecycleActivity::class.java)
         startActivity(intent)
         finish()
